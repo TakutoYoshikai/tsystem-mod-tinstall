@@ -1,0 +1,19 @@
+#!/bin/bash
+
+cd ~/workspace
+git clone git@github.com:TakutoYoshikai/$1.git
+cd $1
+
+if [ -f ./setup.py ]; then
+  pip3 install -e .
+elif [ -f ./package.json ]; then
+  npm install -g .
+elif [ -f ./install.sh ]; then
+  ./install.sh
+elif [ -f ./setup.sh ]; then
+  ./setup.sh
+elif [ -f ./Cargo.toml ]; then
+  cargo install --path .
+fi
+
+

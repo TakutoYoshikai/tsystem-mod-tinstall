@@ -1,6 +1,20 @@
 #!/bin/bash
 
 cd ~/workspace
+
+if [ "$1" = "" ]; then
+  exit
+fi
+
+if [[ $1 = *"tpackage" ]]; then
+  packages=($(curl https://raw.githubusercontent.com/TakutoYoshikai/$1/master/tpackage.txt))
+  for package in "${packages[@]}"
+  do
+    tinstall $package
+  done
+  exit
+fi
+
 git clone git@github.com:TakutoYoshikai/$1.git
 cd $1
 

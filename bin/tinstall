@@ -18,6 +18,14 @@ fi
 git clone git@github.com:TakutoYoshikai/$1.git
 cd $1
 
+if [ -f ./tpackage.txt ]; then
+  packages=($(cat ./tpackage.txt))
+  for package in "${packages[@]}"
+  do
+    tinstall $package
+  done
+fi
+
 if [ -f ./setup.py ]; then
   pip3 install -e .
 elif [ -f ./package.json ]; then
@@ -29,5 +37,3 @@ elif [ -f ./setup.sh ]; then
 elif [ -f ./Cargo.toml ]; then
   cargo install --path .
 fi
-
-

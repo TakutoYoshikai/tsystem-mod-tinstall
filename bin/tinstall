@@ -29,6 +29,7 @@ fi
 if [ -f ./setup.py ]; then
   pip3 install -e .
 elif [ -f ./package.json ]; then
+  npm install
   npm install -g .
 elif [ -f ./install.sh ]; then
   ./install.sh
